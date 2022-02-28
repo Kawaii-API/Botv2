@@ -1,0 +1,11 @@
+{
+  "developer": 441192596325531648,
+  "description": "The random Image API for Discord Bots",
+  "status": "kawaii.red | k.help",
+  "syntax": "%d.%m.%Y %H:%M:%S",
+  "color": "#ed4c67",
+  "version": "2.0.0",
+  "prefix": "k.",
+  "cooldown": [1, 1],
+  "shards": 1
+}
