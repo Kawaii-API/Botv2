@@ -28,7 +28,9 @@ def tokens(argument: str):
 # log
 coloredlogs.install(fmt='\u001b[34m[%(asctime)s] \u001b[31m[%(levelname)s] \u001b[37m%(message)s')
 logger = logging.getLogger('discord')
-handler = logging.FileHandler(filename=f'Log/{datetime.utcnow().strftime("%d-%m-%Y")}.log', encoding='utf-8', mode='a+')
+handler = logging.FileHandler(filename=f'Log/{datetime.utcnow().strftime("%d-%m-%Y")}.log',
+                              encoding='utf-8',
+                              mode='a+')
 handler.setFormatter(logging.Formatter('[%(asctime)s] [%(levelname)s] %(message)s'))
 logger.addHandler(handler)
 
@@ -57,8 +59,17 @@ async def send_gif(ctx, message):
 # send message
 async def send(ctx, content=None, embed=None, file=None, view=None, delete_after=None):
     try:
-        msg = await ctx.message.reply(content=content, embed=embed, file=file, view=view, delete_after=delete_after, mention_author=False)
+        msg = await ctx.message.reply(content=content,
+                                      embed=embed,
+                                      file=file,
+                                      view=view,
+                                      delete_after=delete_after,
+                                      mention_author=False)
         return msg
     except Exception:
-        msg = await ctx.send(content=content, embed=embed, file=file, view=view, delete_after=delete_after)
+        msg = await ctx.send(content=content,
+                             embed=embed,
+                             file=file,
+                             view=view,
+                             delete_after=delete_after)
         return msg

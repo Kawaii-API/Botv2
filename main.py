@@ -66,11 +66,25 @@ class Kawaii(commands.AutoShardedBot):
         if "Unknown Message" in str(error):
             return
         if isinstance(error, commands.CommandOnCooldown):
-            embed = discord.Embed(title='You are on cooldown!', description=str(error).replace("You are on cooldown. ", ""), color=color())
-            await send(context, embed=embed, view=discord.ui.View(discord.ui.Button(label=f'Help', style=discord.ButtonStyle.link, url=config("support"))), delete_after=10)
+            embed = discord.Embed(title='You are on cooldown!',
+                                  description=str(error).replace("You are on cooldown. ", ""),
+                                  color=color())
+            await send(context,
+                       embed=embed,
+                       view=discord.ui.View(discord.ui.Button(label=f'Help',
+                                                              style=discord.ButtonStyle.link,
+                                                              url=config("support"))),
+                       delete_after=10)
             return
-        embed = discord.Embed(title='Something went wrong!', description=str(error), color=color())
-        await send(context, embed=embed, view=discord.ui.View(discord.ui.Button(label=f'Help', style=discord.ButtonStyle.link, url=config("support"))), delete_after=10)
+        embed = discord.Embed(title='Something went wrong!',
+                              description=str(error),
+                              color=color())
+        await send(context,
+                   embed=embed,
+                   view=discord.ui.View(discord.ui.Button(label=f'Help',
+                                                          style=discord.ButtonStyle.link,
+                                                          url=config("support"))),
+                   delete_after=10)
         logger.error(f"{context.message.content} | {error}")
         return
 
@@ -80,9 +94,11 @@ class Kawaii(commands.AutoShardedBot):
         if not ctx.command:
             return
         if not ctx.guild:
-            embed = discord.Embed(title='Command denied', description='Invite the bot into a server to use this command.', color=color())
+            embed = discord.Embed(title='Command denied',
+                                  description='Invite the bot into a server to use this command.',
+                                  color=color())
             embed.set_footer(text='Commands are disabled in the DM\'s.')
-            await ctx.send(embed=embed)
+            await send(ctx, embed=embed)
             return
         await ctx.trigger_typing()
         await self.invoke(ctx)
@@ -99,7 +115,8 @@ class Kawaii(commands.AutoShardedBot):
 
 # run
     def run(self):
-        super().run(tokens("discord"), reconnect=True)
+        super().run(tokens("discord"),
+                    reconnect=True)
 
 
 # main
